@@ -12,7 +12,7 @@ namespace Project
             // 18
             // string text = "11.01.2001 22:00:00";
             // string format = "dd.MM.yyyy HH:mm:ss";
-            Console.Write("Enter a date and hours: ");
+            Console.Write("Enter a date and hours (dd.mm.yyyy hh:mm:ss): ");
             string text = Console.ReadLine();
             Console.Write("Enter a format: ");
             string format = Console.ReadLine();

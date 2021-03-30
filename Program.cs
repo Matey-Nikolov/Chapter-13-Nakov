@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Project
@@ -13,17 +12,14 @@ namespace Project
         {
             while (true)
             {
-                //Task tasks = new Task();
-                // Console.WriteLine(tasks.Tasks());
-
-                Console.WriteLine("Exit - 1");
+                Console.WriteLine("1 - Exit.");
                 Console.WriteLine("2 - Reverse."); // Ok
                 Console.WriteLine("3 - correctly placed brackets."); // Ok
                 Console.WriteLine("4 - NroverkaNakloneni"); // Ok
                 Console.WriteLine("5 - CountSubstring."); // Ok
                 Console.WriteLine("6 - UpCaseTag."); // Ok
                 Console.WriteLine("7 - LongString."); // Ok
-                // class
+                                                      
                 Console.WriteLine("8 - Unicode."); // OK
                 Console.WriteLine("9 - CodingGivenCipher."); // Ok
                 Console.WriteLine("10 - ExtractText."); // OK
@@ -33,7 +29,7 @@ namespace Project
                 Console.WriteLine("13 - ProtocolServerResource."); //  Ok
                 Console.WriteLine("14 - ReverseText.");  // Ok
                 Console.WriteLine("15 - Dictionary."); // Ok
-                Console.WriteLine(" 16 - HTMLDocument."); // Ok
+                Console.WriteLine("16 - HTMLDocument."); // Ok
                 Console.WriteLine("17 - DateTime."); // OK
                 Console.WriteLine("18 - PrintDateAfterHours."); // Ok
                 Console.WriteLine("19 - RetrieveEmails."); // Ok
@@ -50,9 +46,11 @@ namespace Project
                 Console.Write("Enter ONLY digits of 1 to 26. ");
                 int option = 0;
 
+
                 int.TryParse(Console.ReadLine(), out option);
 
-                if (1 >= option && option >= 16)
+
+                if (option < 1 || 26 < option)
                     continue;
                 else
                     option.ToString();
@@ -60,9 +58,6 @@ namespace Project
 
                 switch (option)
                 {
-                    case 1:
-                        return;
-                        break;
                     case 2:
                         ReverseString_2 reverse1 = new ReverseString_2();
                         Console.WriteLine($"Reversed: {reverse1.Revererse()}.");
@@ -80,7 +75,7 @@ namespace Project
                         break;
                     case 5:
                         CountSubstring_5 countSubstring = new CountSubstring_5();
-                        Console.WriteLine(countSubstring.CountSubstring());
+                        Console.WriteLine($"Only words is not ban: {countSubstring.CountSubstring()}.");
                         Console.WriteLine("----------------");
                         break;
                     case 6:
@@ -137,7 +132,6 @@ namespace Project
                     case 16:
                         HTMLDocument document = new HTMLDocument();
                         Console.WriteLine($"HTML doc: {document.DocumentRegex()}");
-                       // HTMLDocument();
                         Console.WriteLine("----------------");
                         break;
                     case 17:
@@ -159,14 +153,13 @@ namespace Project
                         Console.WriteLine("----------------");
                         break;
                     case 21:
-                        // PalindromeWord palindromeWords = new PalindromeWord();
-                        // Console.WriteLine($"Return all words - palindrome: {string.Join(" ", palindromeWords.Palindromes())}");
+                        PalindromeWord palindromeWords = new PalindromeWord();
+                        Console.WriteLine($"Return all words - palindrome: {string.Join(" ", palindromeWords.Palindromes())}");
                         Console.WriteLine("----------------");
                         break;
                     case 22:
-                        // Class_letter letter = new Class_letter();
-                        //  Console.WriteLine(letter.lettersSort());
-                        lettersSort();
+                        Class_letter letter = new Class_letter();
+                        letter.lettersSort();
                         Console.WriteLine("----------------");
                         break;
                     case 23:
@@ -175,11 +168,11 @@ namespace Project
                         break;
                     case 24:
                         ReplaceChar replace = new ReplaceChar();
-                        Console.WriteLine($"One charq no duplica: {replace.Relace()}.");
+                        Console.WriteLine($"One char no duplica: {replace.Relace()}.");
                         Console.WriteLine("----------------");
                         break;
                     case 25:
-                       SortWord_25 sort = new SortWord_25();
+                        SortWord_25 sort = new SortWord_25();
                         Console.WriteLine($"Sorts words: {string.Join(" ", sort.ReturnWordSort())}");
                         Console.WriteLine("----------------");
                         break;
@@ -187,46 +180,17 @@ namespace Project
                         HTMLNoTags();
                         Console.WriteLine("----------------");
                         break;
+                    case 1:
+                        return;
                 }
             }
-        }
-
-        public static void lettersSort()
-        {
-            // 22
-            //
-
-            Console.Write("Enter words: ");
-            List<string> words = Console.ReadLine()
-                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
-
-            //char[] words = char.ConvertToUtf32(Console.ReadLine());
-
-
-            Dictionary<char, int> kvp = new Dictionary<char, int>();
-
-            foreach (var item in words)
-            {
-                foreach (char ch in item)
-                {
-                    if (!kvp.ContainsKey(ch))
-                        kvp.Add(ch, 1);
-                    else
-                        kvp[ch]++;
-                }
-            }
-
-            Console.WriteLine("All letters and how many times they occur.");
-            foreach (var item in kvp
-                .OrderByDescending(x => x.Key))
-                Console.WriteLine($"{item.Key} - {item.Value}");
         }
 
         public static void HTMLNoTags()
         {
             Console.Write("Enter a HTML with tags: ");
             string content = Console.ReadLine();
+
             /*
             string content = "<html>" +
                             "<head><title>News</title></head>" +
@@ -236,7 +200,7 @@ namespace Project
                             "into skillful .NET software engineers.</p></body>" +
                             "</html>";
             */
-            string pattern = @"<title>([a-z ]*)</title>";
+            string pattern = @"<title>([a-z]*)</title>";
             Regex rx = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
             Match match = rx.Match(content);
@@ -254,7 +218,7 @@ namespace Project
             //20 
             Console.Write("Enter a text and one date (dd.mm.yyyy): ");
             string content = Console.ReadLine();
-           // string content = @"I was born at 14.06.1980. My sister was born at 3.7.1984. In 5/1999 I graduated my high school. The law says (see section 7.3.12) that we are allowed to do this (section 7.4.2.9).";
+            // string content = @"I was born at 14.06.1980. My sister was born at 3.7.1984. In 5/1999 I graduated my high school. The law says (see section 7.3.12) that we are allowed to do this (section 7.4.2.9).";
             string pattern = @"\d{1,2}.\d{1,2}.\d{4}";
 
             Regex rx = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -299,6 +263,7 @@ namespace Project
 
             int keyIndex = 0;
 
+            Console.WriteLine("Cipher text.");
             for (int i = 0; i < inputString.Length; i++)
             {
                 Console.Write(@"\u{0:x4}", (ushort)(inputString[i] ^ key[keyIndex++]));
@@ -331,10 +296,10 @@ namespace Project
         {
             // 8
             //
-            Console.WriteLine("Enter a word in Bulgarian.");
+            Console.Write("Enter a word/name: ");
             string word = Console.ReadLine();
 
-
+            Console.WriteLine("Unique code of the word/name is: ");
             for (int i = 0; i < word.Length; i++)
                 Console.Write(@"\u{0:X4}", Convert.ToInt16(word[i]));
         }

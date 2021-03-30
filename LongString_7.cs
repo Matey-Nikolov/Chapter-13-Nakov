@@ -12,7 +12,7 @@ namespace Project
             //
             Console.Write("Enter a string not londer 20: ");
             string str = Console.ReadLine();
-
+            string a = "";
             int length = str.Length;
 
             if (length > 20)
@@ -28,8 +28,10 @@ namespace Project
             }
             else if (length < 20)
                 Console.WriteLine(str.PadRight(20, '*'));
+            else if (length == 20)
+                a = $"The word is exactly 20 characters: {str}.";
 
-            return $"The word is exactly 20 characters: {str}.";
+            return a;
         }
     }
 }

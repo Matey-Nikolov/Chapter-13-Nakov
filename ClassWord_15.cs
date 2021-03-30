@@ -19,7 +19,7 @@ namespace Project
             {
                 Console.Write("Enter words with their meaning with '-': ");
                 string[] name = Console.ReadLine()
-                    .Split(" - ");
+                    .Split("-");
 
                 string word = name[0];
                 string explanation = name[1];
